@@ -19,6 +19,11 @@ class RegisterSerializer(serializers.ModelSerializer):
         ]
 
 
+class EmailVerificationSerializer(serializers.Serializer):
+    email = serializers.CharField(max_length=300, required=True)
+    token = serializers.CharField(max_length=120, required=True)
+
+
 class AuthUserSerializer(serializers.ModelSerializer):
     auth_token = serializers.SerializerMethodField()
 
