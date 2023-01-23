@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import environ
+
+env = environ.Env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -75,13 +78,14 @@ AUTH_USER_MODEL = "users.User"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'twitter',
-        'USER': 'postgres',
-        'PASSWORD': 'posgtres',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'NAME': env("DATABASE_NAME", default='twitter'),
+        'USER': env("DATABASE_USER", default='postgres'),
+        'PASSWORD': env("DATABASE_PASSWORD", default='postgres'),
+        'HOST': env("DATABASE_HOST", default='127.0.0.1'),
+        'PORT': env("DATABASE_PORT", default='5432'),
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -123,3 +127,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+USER_EMAIL_VERIFICATION = {
+    "TOKEN_LENGTH": 10
+}
+
+# Email Config
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = env("EMAIL_HOST_USER", default='')
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD", default='')
