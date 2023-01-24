@@ -2,6 +2,8 @@ from django.contrib.auth import authenticate
 from django.utils import timezone
 from django.utils.crypto import get_random_string
 from rest_framework import exceptions
+
+from common.services import send_email
 from users.models import User, EmailToken
 from django.conf import settings
 from django.core.mail import send_mail
@@ -14,14 +16,10 @@ def generate_token():
 
 
 def send_verification_email(user, email_token):
+    subject = 'Verify Your Email !'
     verification_link = f"https://app.com?email={user.email}&token={email_token.token}"
-    send_mail(
-        'Verify Your Email !',
-        f"Hey! {user.full_name}, Please click on the below link to verify your email - \n\n {verification_link}",
-        from_email=settings.EMAIL_HOST_USER,
-        recipient_list=[user.email],
-        fail_silently=False,
-    )
+    message = f"Hey! {user.full_name}, Please click on the below link to verify your email - \n\n {verification_link}"
+    send_email(subject, message, to_email=[user.email])
 
 
 def create_user_account(**kwargs):

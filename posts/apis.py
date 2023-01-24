@@ -14,7 +14,10 @@ class PostViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.Gener
     def get_queryset(self):
         queryset = super().get_queryset().filter(is_archived=False)
         if self.action == "list":
-            return queryset.filter(user=self.request.user)
+            queryset = queryset.filter(user=self.request.user)
+        if self.action == "like":
+            queryset = queryset.exclude(user=self.request.user)
+
         return queryset
 
     def list(self, request, *args, **kwargs):
