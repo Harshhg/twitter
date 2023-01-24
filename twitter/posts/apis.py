@@ -2,9 +2,9 @@ from rest_framework import viewsets, mixins, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from posts.models import Post
-from posts.serializers import PostListSerializer, PostCreateSerializer, FeedSerializer
-from posts.services import like_post, unlike_post
+from twitter.posts.models import Post
+from twitter.posts.serializers import PostListSerializer, PostCreateSerializer, FeedSerializer
+from twitter.posts.services import like_post, unlike_post
 
 
 class PostViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.GenericViewSet):

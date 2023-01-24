@@ -4,8 +4,8 @@ from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
-from users.serializers import AuthUserSerializer, RegisterSerializer, LoginSerializer, EmailVerificationSerializer
-from users.services import create_user_account, get_and_authenticate_user, verify_email
+from twitter.users.serializers import AuthUserSerializer, RegisterSerializer, LoginSerializer, EmailVerificationSerializer
+from twitter.users.services import create_user_account, get_and_authenticate_user, verify_email
 
 
 class AuthViewSet(viewsets.GenericViewSet):

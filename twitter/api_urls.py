@@ -1,7 +1,7 @@
 from rest_framework.routers import DefaultRouter
 
-from posts.apis import PostViewSet, FeedViewSet
-from users.apis import AuthViewSet
+from twitter.posts.apis import PostViewSet, FeedViewSet
+from twitter.users.apis import AuthViewSet
 
 default_router = DefaultRouter(trailing_slash=False)
 
