@@ -19,3 +19,10 @@ def like_post(user, post):
     # send email to post owner
     # todo: make it async
     send_post_like_email(liked_by=user, post=post)
+
+
+def unlike_post(user, post):
+    if Post.objects.filter(id=post.id, liked_by__id=user.id).exists():
+        post.liked_by.remove(user)
+        post.likes_count -= 1
+        post.save()
