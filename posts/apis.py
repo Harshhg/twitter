@@ -4,7 +4,7 @@ from rest_framework.response import Response
 
 from posts.models import Post
 from posts.serializers import PostListSerializer, PostCreateSerializer
-from posts.services import like_post
+from posts.services import like_post, unlike_post
 
 
 class PostViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.GenericViewSet):
@@ -37,4 +37,10 @@ class PostViewSet(mixins.ListModelMixin, mixins.CreateModelMixin, viewsets.Gener
     def like(self, request, *args, **kwargs):
         post = self.get_object()
         like_post(request.user, post)
+        return Response({"success": True})
+
+    @action(methods=["POST"], detail=True)
+    def unlike(self, request, *args, **kwargs):
+        post = self.get_object()
+        unlike_post(request.user, post)
         return Response({"success": True})
