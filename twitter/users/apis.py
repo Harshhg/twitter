@@ -1,5 +1,5 @@
 # Third Party Stuff
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -36,5 +36,6 @@ class AuthViewSet(viewsets.GenericViewSet):
         serializer.is_valid(raise_exception=True)
         email = serializer.validated_data.pop("email")
         token = serializer.validated_data.pop("token")
-        verify_email(email, token)
+        if not verify_email(email, token):
+            return Response({"error": "Invalid email / token"}, status=status.HTTP_400_BAD_REQUEST)
         return Response({"success": True})

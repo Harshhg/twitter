@@ -42,8 +42,9 @@ def get_and_authenticate_user(email, password):
 def verify_email(email, token):
     email_token = EmailToken.objects.filter(email=email, token=token, is_verified=False).first()
     if not email_token:
-        raise exceptions.ValidationError("Invalid email or token !")
+        return False
 
     User.objects.filter(email=email).update(verified_on=timezone.now())
     email_token.is_verified = True
     email_token.save()
+    return True
