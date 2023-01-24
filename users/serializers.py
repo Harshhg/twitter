@@ -3,6 +3,12 @@ from rest_framework.authtoken.models import Token
 from users.models import User
 
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ["id", "username", "full_name"]
+
+
 class LoginSerializer(serializers.Serializer):
     email = serializers.CharField(max_length=300, required=True)
     password = serializers.CharField(required=True)
