@@ -3,10 +3,9 @@ from django.utils import timezone
 from django.utils.crypto import get_random_string
 from rest_framework import exceptions
 
-from common.services import send_email
-from users.models import User, EmailToken
+from twitter.common.services import send_email
+from twitter.users.models import User, EmailToken
 from django.conf import settings
-from django.core.mail import send_mail
 
 
 def generate_token():

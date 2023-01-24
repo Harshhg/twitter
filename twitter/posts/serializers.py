@@ -1,6 +1,6 @@
 from rest_framework import serializers
-from posts.models import Post
-from users.serializers import UserSerializer
+from twitter.posts.models import Post
+from twitter.users.serializers import UserSerializer
 
 
 class PostListSerializer(serializers.ModelSerializer):

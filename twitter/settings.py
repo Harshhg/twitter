@@ -41,8 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework.authtoken',
-    'users',
-    'posts'
+    'twitter.users',
+    'twitter.posts'
 ]
 
 MIDDLEWARE = [
@@ -55,7 +55,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'twitter_backend.urls'
+ROOT_URLCONF = 'twitter.urls'
 
 TEMPLATES = [
     {
@@ -73,7 +73,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'twitter_backend.wsgi.application'
+WSGI_APPLICATION = 'twitter.wsgi.application'
 AUTH_USER_MODEL = "users.User"
 
 DATABASES = {

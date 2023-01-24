@@ -1,5 +1,5 @@
-from common.services import send_email
-from posts.models import Post
+from twitter.common.services import send_email
+from twitter.posts.models import Post
 
 
 def send_post_like_email(liked_by, post):

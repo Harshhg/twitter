@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework.authtoken.models import Token
-from users.models import User
+from twitter.users.models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
