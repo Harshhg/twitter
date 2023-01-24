@@ -10,3 +10,5 @@ class Post(models.Model):
     is_archived = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
 
+    class Meta:
+        ordering = ["-created_at"]
